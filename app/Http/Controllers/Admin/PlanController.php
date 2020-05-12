@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class PlanController extends Controller
 {
@@ -16,6 +15,7 @@ class PlanController extends Controller
     {
         $this->repository = $plan;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -104,8 +104,12 @@ class PlanController extends Controller
      */
     public function destroy($url)
     {
-        if(!$plan = $this->repository->where('url', $url)->first())
+        if(!$plan = $this->repository->with('details')->where('url', $url)->first())
             return redirect()->back();
+
+        if($plan->details->isNotEmpty())
+            return redirect()->back()
+                ->with('error', 'Esistem Detalhes vinculados a este plano');
 
         $plan->delete();
 

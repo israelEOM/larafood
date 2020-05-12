@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Planos')
 
 @section('content_header')
     <nav aria-label="Page breadcrumb">
@@ -32,7 +32,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Preço</th>
-                        <th width="115">Ações</th>
+                        <th width="160">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +43,7 @@
                             <td>
                                 <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
                                 <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-success"><i class="fas fa-pen"></i></a>
+                                <a href="{{ route('plans.details.index', $plan->url) }}" class="btn btn-info"><i class="fas fa-search-plus"></i></a>
                             </td>
                         </tr>
                     @endforeach
