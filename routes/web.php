@@ -14,9 +14,19 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
     Route::any('plans/search', 'PlanController@search')->name('plans.search');
     Route::resource('plans', 'PlanController');
 
-    
+    /**
+     * Profile Routes
+     */
+    Route::any('profiles/search', 'ProfileController@search')->name('profiles.search');
+    Route::resource('profiles', 'ProfileController');
 
-    Route::get('/', 'PlanController@index')->name('admin.index');
+    /**
+     * Permission Routes
+     */
+    Route::any('permissions/search', 'PermissionController@search')->name('permissions.search');
+    Route::resource('permissions', 'PermissionController');
+
+    Route::get('/', 'ProfileController@index')->name('admin.index');
 });
 
 
